@@ -8,36 +8,40 @@ Ce document définit les règles de nommage et d’organisation des fichiers dan
 
 - Tous les noms de **dossiers** doivent être en **minuscule**, avec des **tirets (`-`)** si plusieurs mots.
 
+ ✅ Exemples valides
 
-# ✅ Exemples valides :
-/routes
-/controllers
-/views
-/public/images
+/routes  
+/controllers  
+/views  
+/public/images  
 
-# ❌ À éviter :
-/Routes
-/MyControllers
-/PublicImages
+ ❌ À éviter
 
-📄 Nom des fichiers
+/Routes  
+/MyControllers  
+/PublicImages  
+
+## 📄 Nom des fichiers
+
 Les fichiers doivent être nommés en minuscule, avec des tirets (-) si besoin.
 
-# ✅ Correct :
-user-controller.js
-formulaire-contact.twig
-main-style.css
+ ✅ Correct
 
-# ❌ À éviter :
-UserController.js
-formulaireContact.twig
-MainStyle.css
+user-controller.js  
+formulaire-contact.twig  
+main-style.css  
 
+ ❌ À éviter
 
-🧩 Classes CSS
+UserController.js  
+formulaireContact.twig  
+MainStyle.css  
+
+## 🧩 Classes CSS
+
 Utiliser le kebab-case (minuscules + tirets) pour toutes les classes CSS.
 
-
+```html
 <!-- ✅ Correct -->
 <div class="form-group error-message"></div>
 
@@ -56,23 +60,20 @@ Utiliser le camelCase pour les identifiants HTML (id).
 <input id="user_email" />
 <section id="Main_Content"></section>
 
-
-
 🧠 Variables & Fonctions JS
 Utiliser le camelCase pour toutes les variables, fonctions et constantes JavaScript.
 
-// ✅ Correct
+✅ Correct
 let userName = "Jean";
 function getUserData() {
   // ...
 }
 
-// ❌ À éviter
+❌ À éviter
 let user_name = "Jean";
 function Get_User_Data() {
   // ...
 }
-
 
 ## 🧩 Nommage des composants serveur
 
@@ -83,29 +84,24 @@ function Get_User_Data() {
 | Modèles       | Suffixe `-model.js`     | user-model.js           |
 | Vues (Twig)   | kebab-case              | create-post.twig        |
 
-
-
 🧼 Règles générales
 
-
-# ✅ Encodage recommandé :
+✅ Encodage recommandé :
 UTF-8 (sans BOM)
 
-# ❌ À éviter :
+❌ À éviter :
 - Accents dans les noms de fichiers
 - Espaces
 - Majuscules mal placées
 - Caractères spéciaux
 
-# ✅ Toujours respecter la casse exacte dans les noms de fichiers et lors des importations :
+✅ Toujours respecter la casse exacte dans les noms de fichiers et lors des importations :
 
-
-// ✅ Correct
+✅ Correct
 import authController from './controllers/auth-controller.js';
 
-// ❌ Incorrect (problème de casse sous Linux/macOS)
+❌ Incorrect (problème de casse sous Linux/macOS)
 import AuthController from './Controllers/Auth-Controller.js';
-
 
 ✅ Exemple de structure recommandée
 
@@ -128,4 +124,3 @@ handiblog/
 │   └── images/
 │       └── logo.png
 Merci de respecter ces conventions pour garantir un projet clair, cohérent et collaboratif. 💼
-

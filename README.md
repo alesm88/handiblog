@@ -7,7 +7,6 @@
 
 Handiblog est une plateforme web inclusive dédiée à la **sensibilisation** et à la **promotion des outils numériques adaptés aux personnes en situation de handicap**. Le site propose un espace ouvert à toutes les formes de handicap et encourage le **partage d'informations**, la **publication d’articles**, et la **diffusion de ressources accessibles**.
 
-
 ## 🎯 Objectifs
 
 - Promouvoir l’usage des outils numériques adaptés aux personnes en situation de handicap.

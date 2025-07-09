@@ -36,8 +36,7 @@ Handiblog est une plateforme web inclusive dédiée à la **sensibilisation** et
 - **Damien** : Développeur Back-End  
 - **Alejandro** : Développeur Back-End  
 - **Nini** : Développeuse Front-End  
-- **Thomas** : Développeur Front-End  
-- **David** : Membre du projet
+- **David** : Développeur Front-End  
 
 ## 💻 Dépôt Git
 

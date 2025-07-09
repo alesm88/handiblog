@@ -4,8 +4,8 @@ dotenv.config();
 
 import contactRoutes from './routes/contactRoutes.js';
 import usersRoutes from './routes/usersRoutes.js';
-import articlesRoutes from './routes/articlesRoutes.js'
-import categoriesRoutes from './routes/categoriesRoutes.js'
+// import articlesRoutes from './routes/articlesRoutes.js'
+// import categoriesRoutes from './routes/categoriesRoutes.js'
 
 const app = express();
 const PORT = process.env.PORT || 5002;
@@ -23,8 +23,8 @@ app.use(express.urlencoded({ extended: true }));
 // Déclare la route /auteurs en utilisant les routes définies dans auteurRoutes
 app.use('/contact', contactRoutes);
 app.use('/users', usersRoutes);
-app.use('/articles', articlesRoutes);
-app.use('/categories', categoriesRoutes);
+// app.use('/articles', articlesRoutes);
+// app.use('/categories', categoriesRoutes);
 
 app.get('/profil', (req, res) => {
     res.render('profil');

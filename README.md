@@ -106,3 +106,9 @@ npm run dev
 # (ou en mode production)
 npm start
 
+```
+
+# Tests
+
+## Routes
+

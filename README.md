@@ -106,3 +106,118 @@ npm run dev
 # (ou en mode production)
 npm start
 
+## ⚙️ Commande Git 
+
+## 🧰 Commandes Git utiles pour débutants
+
+---
+
+### 🔄 Récupérer les dernières modifications du dépôt distant
+
+```bash
+git pull origin main
+```
+
+Exemple : je suis sur ma branche `Jondo`, je fais :
+
+```bash
+git pull origin main
+```
+
+➡️ Cela permet de récupérer les dernières modifications de la branche `main` (sur GitHub ou un autre dépôt distant) et de les fusionner dans ma branche actuelle.
+
+---
+
+### 🔀 Fusionner une autre branche dans la branche actuelle
+
+```bash
+git merge nom-de-la-branche
+```
+
+Exemple : je suis sur ma branche `Jondo`, je fais :
+
+```bash
+git merge main
+```
+
+➡️ Cela fusionne le contenu de la branche `main` dans ma branche actuelle (`Jondo`).
+
+---
+
+### ❓ Différence entre `git pull` et `git merge`
+
+- `git merge` : permet de **regrouper des changements locaux** entre deux branches.
+- `git pull` : permet de **récupérer les modifications du dépôt distant** et de les fusionner dans ta branche actuelle.
+
+---
+
+### 🔁 Changer de branche
+
+```bash
+git checkout nom-de-la-branche
+```
+
+Exemple : je fais :
+
+```bash
+git checkout main
+```
+
+➡️ Cela me fait quitter la branche `Jondo` pour aller sur la branche `main`.
+
+---
+
+### 🌱 Créer une nouvelle branche
+
+```bash
+git checkout -b nouvelle-branche
+```
+
+➡️ Crée une nouvelle branche et me bascule dessus immédiatement.
+
+---
+
+### ✅ Ajouter et valider des modifications
+
+```bash
+git add .
+git commit -m "Objet de mon commit"
+git push
+```
+
+➡️ Étapes pour enregistrer les changements :
+- `git add .` : ajoute tous les fichiers modifiés
+- `git commit -m` : enregistre un message décrivant les modifications
+- `git push` : envoie les modifications vers le dépôt distant
+
+---
+
+### ⬆️ Envoyer ses modifications sur le dépôt distant
+
+```bash
+git push origin nom-de-la-branche
+```
+
+Exemple : je suis sur ma branche `Jondo`, je fais :
+
+```bash
+git push origin main
+```
+
+➡️ Cela envoie mes nouvelles modifications vers la branche `main` sur GitHub.
+
+---
+
+### 🗑️ Supprimer une branche locale
+
+```bash
+git branch -d nom-de-la-branche
+```
+
+Exemple :
+
+```bash
+git branch -d JonWick
+```
+
+➡️ Supprime la branche `JonWick` localement (uniquement si elle est fusionnée).

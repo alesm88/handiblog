@@ -106,7 +106,6 @@ npm run dev
 # (ou en mode production)
 npm start
 
-<<<<<<< HEAD
 ## ⚙️ Commande Git 
 
 ## 🧰 Commandes Git utiles pour débutants
@@ -222,11 +221,3 @@ git branch -d JonWick
 ```
 
 ➡️ Supprime la branche `JonWick` localement (uniquement si elle est fusionnée).
-=======
-```
-
-# Tests
-
-## Routes
-
->>>>>>> 071773251a1dbafaba05ce76787737813d7d51fc

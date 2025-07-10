@@ -23,8 +23,8 @@ app.use(express.urlencoded({ extended: true }));
 // Déclare la route /auteurs en utilisant les routes définies dans auteurRoutes
 app.use('/contact', contactRoutes);
 app.use('/users', usersRoutes);
-// app.use('/articles', articlesRoutes);
-// app.use('/categories', categoriesRoutes);
+app.use('/articles', articlesRoutes);
+app.use('/categories', categoriesRoutes);
 
 app.get('/profil', (req, res) => {
     res.render('profil');

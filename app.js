@@ -4,8 +4,8 @@ dotenv.config();
 
 import contactRoutes from './routes/contactRoutes.js';
 import usersRoutes from './routes/usersRoutes.js';
-// import articlesRoutes from './routes/articlesRoutes.js'
-// import categoriesRoutes from './routes/categoriesRoutes.js'
+import articlesRoutes from './routes/articlesRoutes.js'
+import categoriesRoutes from './routes/categoriesRoutes.js'
 
 const app = express();
 const PORT = process.env.PORT || 5002;

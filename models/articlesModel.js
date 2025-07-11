@@ -3,7 +3,7 @@ import pool from '../config/db.js'
 
 export const createArticles = (titre, description, contenu, categories_id, users_id) => {
     return pool.query(
-      "INSERT INTO articles (titre, description, contenu, categories_id, users_id) VALUES (?, ?, ?, ?, ?)",
+      "INSERT INTO articles (titre, description, contenu, categorie_id, users_id) VALUES (?, ?, ?, ?, ?)",
       [titre, description, contenu, categories_id, users_id]
     );
   };
@@ -20,10 +20,10 @@ export const createArticles = (titre, description, contenu, categories_id, users
     return pool.query("SELECT * FROM articles WHERE id = ?", [id]);
   };
   
-  export const updateArticles = (id, titre, description, contenu, categories_id) => {
+  export const updateArticles = (id, titre, description, contenu, created_at, categories_id, users_id) => {
     return pool.query(
-      "UPDATE articles SET titre=?, description=?, contenu=?, categories_id=?, WHERE id=?",
-      [id, titre, description, contenu, categories_id]
+      "UPDATE articles SET titre=?, description=?, contenu=?, created_at=?, categorie_id=?, users_id=? WHERE id=?",
+      [titre, description, contenu, created_at, categories_id, users_id, id]
     );
   };
   

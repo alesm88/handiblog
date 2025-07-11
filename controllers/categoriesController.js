@@ -24,9 +24,9 @@ export async function addCategorie(req, res) {
 
 export async function putCategorie(req, res) {
     const { id } = req.params
-    const { categories_id, nom, description } = req.body
+    const { nom, description } = req.body
     try {
-        await Categories.modifyCategory(id, categories_id, nom, description)
+        await Categories.updateCategorie(id, nom, description)
 
         res.status(201).send('Catégorie modifiée avec succès')
     } catch (err) {

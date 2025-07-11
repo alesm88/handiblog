@@ -92,6 +92,8 @@ npm install bcrypt
 npm install multer
 npm install twig
 npm install cors
+npm install jsonwebtoken
+npm install nodemailer
 
 # 4. Installer les dépendances de développement
 npm install --save-dev nodemon
@@ -135,3 +137,6 @@ Methode GET => /categories/:id
 Methode POST => /categories/
 Methode PUT => /categories/:id
 Methode DELETE => /categories/:id
+
+### Nous avons modifier les variables roles (avant "role") dans les controlleurs
+### Nous avons tester la supression en CASCADE et aussi le RESTRICT et le SET NULL dans ON DELETE / UPDATE

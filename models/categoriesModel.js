@@ -13,12 +13,12 @@ export const createCategorie = (nom, description) => {
   };
 
   export const getCategorieById = (id) => {
-    return pool.query("SELECT * FROM livres WHERE id = ?", [id]);
+    return pool.query("SELECT * FROM categories WHERE id = ?", [id]);
   };
   
   export const updateCategorie = (id, nom, description) => {
     return pool.query(
-      "UPDATE categories SET nom=?, description=?, WHERE id=?",
+      "UPDATE categories SET nom=?, description=? WHERE id=?",
       [nom, description, id]
     );
   };

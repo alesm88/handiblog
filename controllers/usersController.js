@@ -1,52 +1,71 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { User } from '../models/usersModel.js';
+import { sendVerificationEmail } from '../utils/mailer.js';
 
-import { createUser, findUserByEmail } from '../models/usersModel.js'
+export const register = async (req, res) => {
+  const { nom, prenom, pseudo, email, password, confirmPassword, roles } = req.body;
+  const userRole = roles ?? 'user';
 
-export function showRegisterForm(req, res) {
-    res.render('register', {error: null, success: null})
-}
+  if (password !== confirmPassword) {
+    return res.status(400).json({ message: 'Les mots de passe ne correspondent pas.' });
+  }
 
-export async function register(req, res) {
-    const { email, password, confirmPassword, roles } = req.body;
-    const avatar = req.file ? req.file.filename : null;
+  try {
+    const existing = await User.findUserByEmail(email);
+    if (existing.length > 0) {
+      return res.status(409).json({ message: 'Email déjà utilisé.' });
+    }
+    
+    const hashed = await bcrypt.hash(password, 10);
+    
+    await User.createUser({ nom, prenom, pseudo, email, password: hashed, roles: userRole });
 
-    if (!email || !password || !confirmPassword) {
-        return res.render('register', {error: 'Tous les champs sont obligatoires', success: null})
+    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const link = `http://localhost:5000/users/verify/${token}`;
+
+    sendVerificationEmail(email, link);
+
+    res.status(201).json({ message: 'Utilisateur créé. Vérifiez vos emails pour activer votre compte.' });
+  } catch (err) {
+    res.status(500).json({ message: 'Erreur serveur.', error: err.message });
+  }
+};
+
+export const verifyAccount = async (req, res) => {
+  try {
+    const { token } = req.params;
+    const { email } = jwt.verify(token, process.env.JWT_SECRET);
+
+    const users = await User.findUserByEmail(email);
+    if (users.length === 0) {
+      return res.status(404).json({ message: 'Utilisateur introuvable.' });
     }
 
-    if (password !== confirmPassword) {
-        return res.render('register', {error: 'Les mots de passe ne corresponde pas', success: null})
-    }
+    await User.verifyUser(email);
+    res.json({ message: 'Compte vérifié avec succès.' });
+  } catch (err) {
+    res.status(400).json({ message: 'Token invalide ou expiré.' });
+  }
+};
 
-    const existingUser = await findUserByEmail(email);
-    if (existingUser) {
-        return res.render('register', {error: 'Cet email est déjà utilisé', success: null})
-    }
+export const login = async (req, res) => {
+  const { email, password } = req.body;
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await createUser(email, hashedPassword, roles || 'user', avatar)
-    return res.render('register', {success: 'Inscription Réussie', error: null})
-}
+  try {
+    const users = await User.findUserByEmail(email);
+    if (users.length === 0) return res.status(401).json({ message: 'Identifiants invalides.' });
 
-export function showLoginForm(req, res) {
-    res.render('login', {error: null, success: null})
-}
+    const user = users[0];
+    if (!user.is_verified) return res.status(403).json({ message: 'Veuillez vérifier votre email.' });
 
-export async function login(req, res) {
-    const {email, password} = req.body;
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ message: 'Mot de passe incorrect.' });
 
-    if (!email || !password) {
-        return res.render('login', {error: 'Veuillez remplir tous les champs'})
-    }
+    const token = jwt.sign({ id: user.id, email: user.email, roles: user.roles }, process.env.JWT_SECRET, { expiresIn: '10s' }); // Pour rester authentifié
 
-    const user = await findUserByEmail(email);
-    if (!user) {
-        return res.render('login', {error: 'Email ou mot de passe incorrect'})
-    }
-
-    const match = await bcrypt.compare(password, user.password)
-    if (!match) {
-        return res.render('login', {error: 'Email ou mot de passe incorrect'})
-    }
-    res.redirect('/profil');
-}
+    res.json({ message: 'Connexion réussie.', token });
+  } catch (err) {
+    res.status(500).json({ message: 'Erreur serveur.', error: err.message });
+  }
+};

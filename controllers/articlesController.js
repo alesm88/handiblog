@@ -1,5 +1,4 @@
-import { error } from '@splidejs/splide/src/js/utils';
-import * as Articles from '../models/articlesModel.js'
+import * as Articles from '../models/articlesModel.js';
 
 export async function listArticles(req, res) {
     try {

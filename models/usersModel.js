@@ -3,7 +3,7 @@ import pool from '../config/db.js';
 export const User = {
     createUser: async (user) => {
         const sql = `INSERT INTO users (nom, prenom, pseudo, email, password, role, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?)`;        
-        const [result] = await pool.query(sql, [user.nom, user.prenom, user.pseudo, user.email, user.password, user.role, false]);
+        const [result] = await pool.query(sql, [user.nom, user.prenom, user.pseudo, user.email, user.password, user.roles, false]);
         return result;
     },
 

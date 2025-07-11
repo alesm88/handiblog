@@ -7,26 +7,26 @@ export async function listArticles(req, res) {
         res.status(200).json(articles) // Pour montrer dans un API, sur Postman
     } catch (error) {
         console.log(err);
-        res.status(500).send('Erreur de serveur')        
+        res.status(500).send('Erreur de serveur')
     }
 }
 
 export async function addArticle(req, res) {
-        const {titre, categories_id, description, contenu} = req.body
+    const { titre, description, contenu, categories_id, users_id } = req.body
     try {
-        await Articles.createArticles(titre, categories_id, description, contenu);
+        await Articles.createArticles(titre, description, contenu, categories_id, users_id);
         res.status(201).send('Article créé avec succès')
     } catch (err) {
         console.error(err);
-        res.status(500).send('Erreur serveur')  
+        res.status(500).send('Erreur serveur')
     }
 }
 
 export async function putArticle(req, res) {
     const { id } = req.params;
-    const { categories_id, titre, description, contenu } = req.body
+    const { titre, description, contenu, created_at, categories_id, users_id } = req.body
     try {
-        await Articles.modifyArticle(id, categories_id, titre, description, contenu)
+        await Articles.updateArticles(id, titre, description, contenu, created_at, categories_id, users_id);
 
         res.status(201).send('Article modifié avec succès')
     } catch (err) {
@@ -37,10 +37,9 @@ export async function putArticle(req, res) {
 
 export async function deleteArticle(req, res) {
     const { id } = req.params;
-    const { categories_id, titre, description, contenu } = req.body
     try {
-        await Articles.deleteArticles(id, categories_id, titre, description, contenu)
-    
+        await Articles.deleteArticles(id);
+
         res.status(201).send('Article supprimé avec succès')
     } catch (err) {
         console.error(err);
@@ -55,7 +54,7 @@ export async function getArticleById(req, res) {
         if (!rows.length) return res.status(404).json({ error: "Article non trouvé" });
         res.json(rows[0]);
     } catch (err) {
-        console.error(err);  
+        console.error(err);
         res.status(500).send('Erreur serveur')
     }
 }

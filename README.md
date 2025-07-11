@@ -120,6 +120,9 @@ Methode DELETE => /contact/effacer/:id
 #### USERS
 
 #### ROLES
+Methode GET => /users/verify:token
+Methode POST => /users/register
+Methode POST => /users/login
 
 #### ARTICLES
 Methode GET => /articles/

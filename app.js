@@ -20,7 +20,13 @@ app.use('upload', express.static('public/uploads'));
 // Middleware pour parser les données de formulaire (application/x-www-form-urlencoded)
 app.use(express.urlencoded({ extended: true }));
 
-// Déclare la route /auteurs en utilisant les routes définies dans auteurRoutes
+
+//  Routes d'accueil
+app.get('/', (req, res) => {
+    res.render('accueil'); // Rendra views/accueil.twig
+});
+
+// Routes API
 app.use('/contact', contactRoutes);
 app.use('/users', usersRoutes);
 app.use('/articles', articlesRoutes);

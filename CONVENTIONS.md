@@ -28,6 +28,7 @@ Les fichiers doivent être nommés en minuscule, avec des tirets (-) si besoin.
  ✅ Correct
 
 user-controller.js  
+<!-- A mettre en camelcase : => userController.js -->
 formulaire-contact.twig  
 main-style.css  
 

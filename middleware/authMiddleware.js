@@ -10,10 +10,12 @@ export const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     // Erreur 401 si aucun token fourni
-    // if(!authHeader) return res.status(401).json ({message : "Token requis"});
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.redirect('/notre future page login twig');
-    }
+  return res.status(401).json({ message: 'Token requis ou mal formé.' });
+}
+    // if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    //   return res.redirect('/notre future page login twig');
+    // }
     
     // Le header a normalement cette forme : "Bearer <token>", donc on récupère la 2e partie (le token)
     const token = authHeader.split(' ')[1];

@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <title>Articles</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css"> 
 </head>
 <body>
-    
+
+    <h1>Nos articles</h1>
+
+    {% if articles and articles.length > 0 %}
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <h2>{{ article.titre }}</h2>
+                    <p>{{ article.description }}</p>
+                    <a href="/articles/{{ article.id }}">Lire plus</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun article disponible pour le moment.</p>
+    {% endif %}
+
 </body>
 </html>

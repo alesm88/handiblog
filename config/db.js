@@ -1,8 +1,9 @@
 import mysql from 'mysql2/promise';
 
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
+dotenv.config({ override: true });
 
-dotenv.config(); // Charge les variables d'environnement depuis .env
+// Charge les variables d'environnement depuis .env
 
 // Créer un pool de conexions MYSQL réutilisable dans toute l'application
 const pool = mysql.createPool({

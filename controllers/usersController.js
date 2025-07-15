@@ -69,3 +69,12 @@ export const login = async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur.', error: err.message });
   }
 };
+
+export const showLoginForm = (req, res) => {
+    res.render('Login.twig');
+};
+
+
+export const showRegisterForm = (req, res) => {
+    res.render('Subscribe.twig');
+};

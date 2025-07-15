@@ -32,18 +32,25 @@ export async function effaceContact(req, res) {
     } 
 }
 
+
+
+export async function showContactForm(req, res) {
+    res.render('Contact.twig');
+}
+
 export async function addContact(req, res) {
     try {
-        const {nom, prenom, email, message} = req.body;
-        const contact = await Contact.createContact(nom, prenom, email, message);
+        const { nom, prenom, email, message } = req.body;
+        await Contact.createContact(nom, prenom, email, message);
 
-        //res.render(`contact`, {contact})
-        res.status(201).send(`Contact ajouté`);
+        res.render('Contact.twig', { success: "Votre message a été envoyé avec succès !" });
     } catch (err) {
         console.error(err);
-        res.status(500).send(`Erreur serveur`);
-    } 
+        res.render('Contact.twig', { error: "Une erreur est survenue lors de l'envoi." });
+    }
 }
+
+
 
 export async function trouveContactParEmail(req, res) {
     try {

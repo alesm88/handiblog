@@ -2,12 +2,11 @@ import * as Categories from '../models/categoriesModel.js'
 
 export async function listCategories(req, res) {
     try {
-        const [categories] = await Categories.getAllCategories()
-        // res.render(`articles`, {articles}) // Pour montrer dans un vue en HTML
-        res.status(200).json(categories) // Pour montrer dans un API, sur Postman
+        const [categories] = await Categories.getAllCategories();
+        res.status(200).json(categories);
     } catch (error) {
-        console.log(err);
-        res.status(500).send('Erreur de serveur')        
+        console.log(error); 
+        res.status(500).send('Erreur de serveur');        
     }
 }
 

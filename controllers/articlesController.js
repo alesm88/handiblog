@@ -4,10 +4,10 @@ export async function listArticles(req, res) {
     try {
         const [articles] = await Articles.getAllArticles()
         // res.render(`articles`, {articles}) // Pour montrer dans un vue en HTML
-        res.status(200).json(articles) // Pour montrer dans un API, sur Postman
+        res.render('Articles.twig', { articles }); // Pour montrer dans un API, sur Postman
     } catch (error) {
-        console.log(err);
-        res.status(500).send('Erreur de serveur')
+        console.log(error);
+        res.status(500).send('Erreur de serveur');
     }
 }
 

@@ -14,7 +14,8 @@ export const createArticles = (titre, description, contenu, categories_id, users
        FROM articles
        LEFT JOIN categories ON articles.categorie_id = categories.id`
     );
-  };
+};
+
 
   export const getArticleById = (id) => {
     return pool.query("SELECT * FROM articles WHERE id = ?", [id]);

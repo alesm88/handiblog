@@ -3,7 +3,7 @@ import * as Articles from '../models/articlesModel.js';
 export async function listArticles(req, res) {
     try {
         const [articles] = await Articles.getAllArticles()
-        // res.render(`articles`, {articles}) // Pour montrer dans un vue en HTML
+        // res.render(`Articles`, {articles}) // Pour montrer dans un vue en HTML
         res.status(200).json(articles) // Pour montrer dans un API, sur Postman
     } catch (error) {
         console.log(err);
